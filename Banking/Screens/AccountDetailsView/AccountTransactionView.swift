@@ -35,7 +35,7 @@ struct AccountTransactionView: View {
                 .font(Font.Paragraph.normal)
                 .foregroundColor(AppColors.asphalt)
             
-            Text("\(currency) \(amount)")
+            Text("\(currency) \(amount) -")
                 .font(Font.Paragraph.normal)
                 .foregroundColor(AppColors.asphalt)
         }
