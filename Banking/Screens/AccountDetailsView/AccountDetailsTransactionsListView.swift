@@ -15,27 +15,26 @@ struct AccountDetailsTransactionsListView: View {
     @State var selectedTransactionTab = TransactionType.allTrasactions
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             AccountDetailsTabTransactionsListView(selectedTransactionTab: $selectedTransactionTab)
             
-            List {
-                AccountTransactionView(
-                    inType: true,
-                    currency: "USD",
-                    amount: 43,
-                    description: "Pago Basket",
-                    date: Date()
-                )
-                
-                AccountTransactionView(
-                    inType: false,
-                    currency: "$",
-                    amount: 1000,
-                    description: "Pago Basket",
-                    date: Date()
-                )
-            }
+            Divider()
             
+            VStack {
+                List {
+                    ForEach(1...2, id: \.self) { _ in
+                        AccountDetailsTransactionsListItemView(
+                            inType: true,
+                            currency: "USD",
+                            amount: 43,
+                            description: "Pago Basket",
+                            date: Date()
+                        )
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
+                    }
+                }.listStyle(PlainListStyle())
+            }
         }
     }
     
@@ -57,10 +56,6 @@ struct AccountDetailsTabTransactionsListView: View {
         AccountDetailsTransactionsTabsView(
             selectedTransactionTab: $selectedTransactionTab
         )
-        
-        //...
-        //List
-        //...
     }
 }
 
@@ -119,7 +114,7 @@ struct AccountDetailsTabView: View {
             VStack(alignment: .center) {
                 Text(tabName)
                     .foregroundColor(AppColors.asphalt)
-                    .font(Font.Paragraph.larger)
+                    .font(Font.Button.normal)
                 
                 Rectangle()
                     .fill(AppColors.grayDark)

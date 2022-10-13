@@ -1,5 +1,5 @@
 //
-//  AccountTransactionView.swift
+//  AccountDetailsTransactionsListItemView.swift
 //  banking
 //
 //  Created by René Piñeiro on 10/10/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AccountTransactionView: View {
+struct AccountDetailsTransactionsListItemView: View {
     let inType: Bool
     let currency: String
     let amount: Int
@@ -38,8 +38,7 @@ struct AccountTransactionView: View {
             Text("\(currency) \(amount)")
                 .font(Font.Paragraph.normal)
                 .foregroundColor(AppColors.asphalt)
-        }
-        .padding(.vertical)
+        }.padding()
     }
     
     func iconImageName() -> String {
@@ -57,7 +56,7 @@ struct AccountTransactionView: View {
 
 struct AccountTransactionView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountTransactionView(
+        AccountDetailsTransactionsListItemView(
             inType: true,
             currency: "USD",
             amount: 43,

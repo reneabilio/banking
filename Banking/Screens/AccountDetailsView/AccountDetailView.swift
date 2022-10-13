@@ -10,14 +10,6 @@ import SwiftUI
 struct AccountDetailView: View {
     let dismissAction: () -> ()
     
-    enum Constants {
-        static let backgroundColor = Color(
-            red: 239 / 255,
-            green: 236 / 255,
-            blue: 232 / 255
-        )
-    }
-    
     var body: some View {
         VStack(spacing: 0) {
             AccountDetailTitleView(onTapped: dismissAction)
@@ -32,7 +24,6 @@ struct AccountDetailView: View {
             
             Spacer()
         }
-        .background(Constants.backgroundColor)
     }
 }
 

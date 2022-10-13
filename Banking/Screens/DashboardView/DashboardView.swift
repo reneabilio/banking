@@ -20,7 +20,7 @@ struct DashboardView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            DashboardUserSummaryView(onTapped: { })
+            DashboardUserSummaryView()
             
             AccountsView(
                 onAccountViewTapped: viewModel.presentAccountDetailView
@@ -30,6 +30,8 @@ struct DashboardView: View {
                 .padding(.vertical)
             
             Spacer()
+            
+            DashboardBankDetailsView()
         }
         .background(Constants.backgroundColor)
         .fullScreenCover(isPresented: $viewModel.isShowingFullScreenView) {
@@ -41,7 +43,11 @@ struct DashboardView: View {
 }
 
 struct DashboardUserSummaryView: View {
-    let onTapped: () -> ()
+    @State var color = Color(
+        red: 42.0/255.0,
+        green: 99.0/255.0,
+        blue: 245.0/255.0
+    )
     
     var body: some View {
         HStack(spacing: Paddings.normal) {
@@ -51,26 +57,55 @@ struct DashboardUserSummaryView: View {
             )
             
             Text("Hello John Doe")
-                .foregroundColor(AppColors.asphalt)
+                .foregroundColor(Color.white)
                 .font(Font.Title.h4)
             
             Spacer()
             
             Image(systemName: "gearshape")
                 .resizable()
-                .foregroundColor(AppColors.asphalt)
-                .frame(width: 15, height: 15)
+                .foregroundColor(Color.white)
+                .frame(width: 20, height: 20)
             
             Image(systemName: "chevron.down")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(AppColors.asphalt)
-                .frame(width: 10, height: 10)
+                .foregroundColor(Color.white)
+                .frame(width: 15, height: 15)
         }
         .frame(maxWidth: .infinity, maxHeight: 60)
         .padding(.horizontal)
-        .background(Color.white)
+        .background(color)
         .onTapGesture(perform: onTapped)
+    }
+    
+    private func onTapped() {
+    }
+}
+
+struct DashboardBankDetailsView: View {
+    var body: some View {
+        VStack(spacing: 0) {
+            Divider()
+            
+            HStack {
+                Spacer()
+                
+                Text("Itaú")
+                    .font(Font.label)
+                    .foregroundColor(AppColors.asphaltLight)
+                
+                Image(systemName: "key.viewfinder")
+                    .resizable()
+                    .frame(width: 16, height: 16)
+                    .foregroundColor(AppColors.asphalt)
+                
+                Spacer()
+                
+            }
+            .padding(.top, Paddings.normal)
+            .background(AppColors.smoke)
+        }
     }
 }
 
@@ -92,6 +127,9 @@ struct UserProfileView: View {
                 .padding()
                 .background(AppColors.smokeDark)
                 .clipShape(Circle())
+                .overlay(
+                    Circle().strokeBorder(AppColors.grayDark, lineWidth: 0.8)
+                )
         }
     }
 }
